@@ -1,8 +1,8 @@
-package com.bankapp.server.controller;
+package org.ably.bankinge.controller;
 
-import com.bankapp.server.domain.dto.InvoiceDTO;
-import com.bankapp.server.domain.request.InvoiceRequest;
-import com.bankapp.server.service.InvoiceService;
+import org.ably.bankinge.domain.dto.InvoiceDTO;
+import org.ably.bankinge.domain.request.InvoiceRequest;
+import org.ably.bankinge.service.InvoiceService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -24,14 +24,14 @@ public class InvoiceController {
     private final InvoiceService invoiceService;
 
     @Operation(summary = "Create new invoice")
-    @PostMapping("/init")
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public InvoiceDTO save(@RequestBody @Valid final InvoiceRequest invoiceRequest) {
         return invoiceService.save(invoiceRequest);
     }
 
     @Operation(summary = "Get all invoices")
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<InvoiceDTO> findAll() {
         return invoiceService.findAll();
     }

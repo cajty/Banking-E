@@ -1,8 +1,8 @@
-package com.bankapp.server.mapper;
+package org.ably.bankinge.mapper;
 
-import com.bankapp.server.domain.dto.InvoiceDTO;
-import com.bankapp.server.domain.entities.Invoice;
-import com.bankapp.server.domain.request.InvoiceRequest;
+import org.ably.bankinge.domain.dto.InvoiceDTO;
+import org.ably.bankinge.domain.entities.Invoice;
+import org.ably.bankinge.domain.request.InvoiceRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

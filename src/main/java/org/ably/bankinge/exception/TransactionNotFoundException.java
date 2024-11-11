@@ -1,7 +1,7 @@
-package com.bankapp.server.exception;
+package org.ably.bankinge.exception;
 
 public class TransactionNotFoundException extends RuntimeException{
     public TransactionNotFoundException(){
-        super("TRANSACTION_NOT_FOUND");
+        super("TRANSACTION NOT FOUND");
     }
 }

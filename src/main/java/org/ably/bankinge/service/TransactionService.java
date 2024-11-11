@@ -1,12 +1,12 @@
-package com.bankapp.server.service;
+package org.ably.bankinge.service;
 
-import com.bankapp.server.domain.dto.TransactionDTO;
-import com.bankapp.server.domain.entities.Transaction;
-import com.bankapp.server.domain.request.TransactionRequest;
-import com.bankapp.server.exception.TransactionNotFoundException;
-import com.bankapp.server.mapper.TransactionMapper;
-import com.bankapp.server.repository.AccountRepository;
-import com.bankapp.server.repository.TransactionRepository;
+import org.ably.bankinge.domain.dto.TransactionDTO;
+import org.ably.bankinge.domain.entities.Transaction;
+import org.ably.bankinge.domain.request.TransactionRequest;
+import org.ably.bankinge.exception.TransactionNotFoundException;
+import org.ably.bankinge.mapper.TransactionMapper;
+import org.ably.bankinge.repository.AccountRepository;
+import org.ably.bankinge.repository.TransactionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +18,21 @@ import java.util.Optional;
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
-    private final AccountRepository accountRepository;
+    private final  AccountService accountService;
     private final TransactionMapper transactionMapper;
 
     public TransactionDTO save(TransactionRequest transactionRequest) {
-        Transaction transaction = transactionMapper.toEntity(transactionRequest);
-        return transactionMapper.toDTO(transactionRepository.save(transaction));
+        try {
+            accountService.findById(transactionRequest.getAccountSenderId());
+            accountService.findById(transactionRequest.getAccountReceiverId());
+
+            Transaction transaction = transactionMapper.toEntity(transactionRequest);
+            return transactionMapper.toDTO(transactionRepository.save(transaction));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public List<TransactionDTO> findAll(){

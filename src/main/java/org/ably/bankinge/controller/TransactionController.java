@@ -1,8 +1,8 @@
-package com.bankapp.server.controller;
+package org.ably.bankinge.controller;
 
-import com.bankapp.server.domain.dto.TransactionDTO;
-import com.bankapp.server.domain.request.TransactionRequest;
-import com.bankapp.server.service.TransactionService;
+import org.ably.bankinge.domain.dto.TransactionDTO;
+import org.ably.bankinge.domain.request.TransactionRequest;
+import org.ably.bankinge.service.TransactionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -24,14 +24,14 @@ public class TransactionController {
     private final TransactionService publicV1TransactionService;
 
     @Operation(summary = "Create new transaction")
-    @PostMapping("/init")
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public TransactionDTO save(@RequestBody @Valid final TransactionRequest transactionRequest) {
         return publicV1TransactionService.save(transactionRequest);
     }
 
     @Operation(summary = "Get all transactions")
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<TransactionDTO> findAll() {
         return publicV1TransactionService.findAll();
     }

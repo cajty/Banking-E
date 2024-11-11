@@ -1,4 +1,4 @@
-package com.bankapp.server.domain.dto;
+package org.ably.bankinge.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

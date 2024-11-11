@@ -1,8 +1,8 @@
-package com.bankapp.server.controller;
+package org.ably.bankinge.controller;
 
-import com.bankapp.server.domain.dto.UserDTO;
-import com.bankapp.server.domain.request.UserRequest;
-import com.bankapp.server.service.UserService;
+import org.ably.bankinge.domain.dto.UserDTO;
+import org.ably.bankinge.domain.request.UserRequest;
+import org.ably.bankinge.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,14 +26,14 @@ public class UserController {
     private final UserService userService;
 
     @Operation(summary = "Create new user")      // Added this line
-    @PostMapping("/init")
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO save(@RequestBody @Valid final UserRequest userRequest) {
         return userService.save(userRequest);
     }
 
     @Operation(summary = "Get all users")        // Added this line
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<UserDTO> findAll() {
         return userService.findAll();
     }

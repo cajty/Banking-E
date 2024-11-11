@@ -1,4 +1,4 @@
-package com.bankapp.server.domain.request;
+package org.ably.bankinge.domain.request;
 
 
 import lombok.AllArgsConstructor;
@@ -19,11 +19,6 @@ public class LoanRequest {
     @Positive(message = "Amount must be a positive value")
     private Double amount;
 
-    @NotNull(message = "Interest rate cannot be null")
-    @Positive(message = "Interest rate must be a positive value")
-    private Double interestRate;
-
-    private boolean approved;
 
     @NotNull(message = "User ID cannot be null")
     private Long userId;

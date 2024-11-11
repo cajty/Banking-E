@@ -1,10 +1,10 @@
-package com.bankapp.server.service;
+package org.ably.bankinge.service;
 
-import com.bankapp.server.domain.dto.LoanDTO;
-import com.bankapp.server.domain.entities.Loan;
-import com.bankapp.server.domain.request.LoanRequest;
-import com.bankapp.server.mapper.LoanMapper;
-import com.bankapp.server.repository.LoanRepository;
+import org.ably.bankinge.domain.dto.LoanDTO;
+import org.ably.bankinge.domain.entities.Loan;
+import org.ably.bankinge.domain.request.LoanRequest;
+import org.ably.bankinge.mapper.LoanMapper;
+import org.ably.bankinge.repository.LoanRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

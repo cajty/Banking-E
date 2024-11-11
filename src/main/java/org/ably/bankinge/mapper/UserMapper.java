@@ -1,8 +1,8 @@
-package com.bankapp.server.mapper;
+package org.ably.bankinge.mapper;
 
-import com.bankapp.server.domain.dto.UserDTO;
-import com.bankapp.server.domain.entities.*;
-import com.bankapp.server.domain.request.UserRequest;
+import org.ably.bankinge.domain.dto.UserDTO;
+import org.ably.bankinge.domain.entities.*;
+import org.ably.bankinge.domain.request.UserRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -10,6 +10,7 @@ import org.mapstruct.factory.Mappers;
 
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
@@ -29,7 +30,7 @@ public interface UserMapper {
     List<UserDTO> toDTOList(List<User> users);
 
     @Named("mapAccountIds")
-    default List<Long> mapAccountIds(List<Account> accounts) {
+    default List<UUID> mapAccountIds(List<Account> accounts) {
         if (accounts == null) return null;
         return accounts.stream()
                 .map(Account::getId)

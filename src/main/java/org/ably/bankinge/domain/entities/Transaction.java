@@ -1,6 +1,6 @@
-package com.bankapp.server.domain.entities;
+package org.ably.bankinge.domain.entities;
 
-import com.bankapp.server.domain.enums.TransactionType;
+import org.ably.bankinge.domain.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +21,10 @@ public class Transaction {
     private TransactionType type;
 
     @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @JoinColumn(name = "sender_account_id")
+    private Account accountOfSender;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_account_id")
+    private Account accountOfReceiver;
 }

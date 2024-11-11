@@ -1,6 +1,6 @@
-package com.bankapp.server.repository;
+package org.ably.bankinge.repository;
 
-import com.bankapp.server.domain.entities.Transaction;
+import org.ably.bankinge.domain.entities.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {

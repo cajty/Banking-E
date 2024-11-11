@@ -1,4 +1,4 @@
-package com.bankapp.server.domain.entities;
+package org.ably.bankinge.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

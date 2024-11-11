@@ -1,12 +1,11 @@
-package com.bankapp.server.service;
+package org.ably.bankinge.service;
 
 
-import com.bankapp.server.domain.dto.UserDTO;
-import com.bankapp.server.domain.entities.User;
-import com.bankapp.server.domain.request.UserRequest;
-import com.bankapp.server.exception.UserNotFoundException;
-import com.bankapp.server.mapper.UserMapper;
-import com.bankapp.server.repository.UserRepository;
+import org.ably.bankinge.domain.dto.UserDTO;
+import org.ably.bankinge.domain.entities.User;
+import org.ably.bankinge.domain.request.UserRequest;
+import org.ably.bankinge.mapper.UserMapper;
+import org.ably.bankinge.repository.UserRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -63,7 +62,5 @@ public class UserService  {
 //    }
 
 
-    public void delete(Long id) {
-        userRepository.deleteById(id);
-    }
+    public void delete(Long id) {userRepository.deleteById(id);}
 }

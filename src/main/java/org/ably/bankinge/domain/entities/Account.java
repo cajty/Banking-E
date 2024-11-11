@@ -1,10 +1,12 @@
-package com.bankapp.server.domain.entities;
+package org.ably.bankinge.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Data
 @Entity
@@ -14,10 +16,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    private String accountNumber;
     private Double balance;
 
     @ManyToOne

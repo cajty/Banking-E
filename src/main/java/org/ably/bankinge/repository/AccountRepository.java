@@ -1,7 +1,9 @@
-package com.bankapp.server.repository;
+package org.ably.bankinge.repository;
 
-import com.bankapp.server.domain.entities.Account;
+import org.ably.bankinge.domain.entities.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends JpaRepository<Account,Long> {
+import java.util.UUID;
+
+public interface AccountRepository extends JpaRepository<Account, UUID> {
 }

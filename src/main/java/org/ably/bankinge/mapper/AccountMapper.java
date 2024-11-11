@@ -1,8 +1,8 @@
-package com.bankapp.server.mapper;
+package org.ably.bankinge.mapper;
 
-import com.bankapp.server.domain.dto.AccountDTO;
-import com.bankapp.server.domain.entities.Account;
-import com.bankapp.server.domain.request.AccountRequest;
+import org.ably.bankinge.domain.dto.AccountDTO;
+import org.ably.bankinge.domain.entities.Account;
+import org.ably.bankinge.domain.request.AccountRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -14,10 +14,10 @@ public interface AccountMapper {
 
     AccountMapper INSTANCE = Mappers.getMapper(AccountMapper.class);
 
-    @Mapping(target = "user", source = "user")
+@Mapping(target = "accountNumber", source = "id")
     AccountDTO toDTO(Account account);
 
-    @Mapping(target = "id", ignore = true)
+
     @Mapping(target = "user.id", source = "userId")
     Account toEntity(AccountRequest accountRequest);
 

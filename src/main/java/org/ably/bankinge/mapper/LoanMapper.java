@@ -1,8 +1,8 @@
-package com.bankapp.server.mapper;
+package org.ably.bankinge.mapper;
 
-import com.bankapp.server.domain.dto.LoanDTO;
-import com.bankapp.server.domain.entities.Loan;
-import com.bankapp.server.domain.request.LoanRequest;
+import org.ably.bankinge.domain.dto.LoanDTO;
+import org.ably.bankinge.domain.entities.Loan;
+import org.ably.bankinge.domain.request.LoanRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

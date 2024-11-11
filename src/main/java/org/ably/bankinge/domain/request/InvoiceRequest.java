@@ -1,4 +1,4 @@
-package com.bankapp.server.domain.request;
+package org.ably.bankinge.domain.request;
 
 
 import lombok.AllArgsConstructor;

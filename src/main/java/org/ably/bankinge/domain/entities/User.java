@@ -1,6 +1,6 @@
-package com.bankapp.server.domain.entities;
+package org.ably.bankinge.domain.entities;
 
-import com.bankapp.server.domain.enums.Role;
+import org.ably.bankinge.domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,10 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import java.util.Collection;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 @Data
 @Entity

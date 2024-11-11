@@ -1,6 +1,6 @@
-package com.bankapp.server.domain.dto;
+package org.ably.bankinge.domain.dto;
 
-import com.bankapp.server.domain.enums.TransactionStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

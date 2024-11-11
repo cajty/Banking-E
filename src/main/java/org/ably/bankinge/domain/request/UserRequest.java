@@ -1,6 +1,6 @@
-package com.bankapp.server.domain.request;
+package org.ably.bankinge.domain.request;
 
-import com.bankapp.server.domain.enums.Role;
+import org.ably.bankinge.domain.enums.Role;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

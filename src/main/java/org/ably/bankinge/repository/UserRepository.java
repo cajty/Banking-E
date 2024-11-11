@@ -1,9 +1,9 @@
-package com.bankapp.server.repository;
+package org.ably.bankinge.repository;
 
-import com.bankapp.server.domain.entities.User;
+import org.ably.bankinge.domain.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

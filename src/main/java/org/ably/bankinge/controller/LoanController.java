@@ -1,8 +1,8 @@
-package com.bankapp.server.controller;
+package org.ably.bankinge.controller;
 
-import com.bankapp.server.domain.dto.LoanDTO;
-import com.bankapp.server.domain.request.LoanRequest;
-import com.bankapp.server.service.LoanService;
+import org.ably.bankinge.domain.dto.LoanDTO;
+import org.ably.bankinge.domain.request.LoanRequest;
+import org.ably.bankinge.service.LoanService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -24,14 +24,14 @@ public class LoanController {
     private final LoanService publicV1LoanService;
 
     @Operation(summary = "Create new loan")
-    @PostMapping("/init")
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public LoanDTO save(@RequestBody @Valid final LoanRequest loanRequest) {
         return publicV1LoanService.save(loanRequest);
     }
 
     @Operation(summary = "Get all loans")
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<LoanDTO> findAll() {
         return publicV1LoanService.findAll();
     }

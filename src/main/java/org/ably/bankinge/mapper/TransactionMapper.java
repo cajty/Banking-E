@@ -1,8 +1,8 @@
-package com.bankapp.server.mapper;
+package org.ably.bankinge.mapper;
 
-import com.bankapp.server.domain.dto.TransactionDTO;
-import com.bankapp.server.domain.entities.Transaction;
-import com.bankapp.server.domain.request.TransactionRequest;
+import org.ably.bankinge.domain.dto.TransactionDTO;
+import org.ably.bankinge.domain.entities.Transaction;
+import org.ably.bankinge.domain.request.TransactionRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -14,15 +14,16 @@ public interface TransactionMapper {
 
     TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
 
-    @Mapping(target = "account", source = "account")
+    @Mapping(target = "accountOfSender", source = "accountOfSender")
+    @Mapping(target = "accountOfReceiver", source = "accountOfSender")
     @Mapping(target = "type", source = "type")
     TransactionDTO toDTO(Transaction transaction);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "account.id", source = "accountId")
+    @Mapping(target = "accountOfSender.id", source = "accountSenderId")
+    @Mapping(target = "accountOfReceiver.id", source = "accountReceiverId")
     @Mapping(target = "type", source = "type")
     Transaction toEntity(TransactionRequest transactionRequest);
 
     List<TransactionDTO> toDTOList(List<Transaction> transactions);
-
 }

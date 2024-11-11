@@ -1,6 +1,6 @@
-package com.bankapp.server.domain.dto;
+package org.ably.bankinge.domain.dto;
 
-import com.bankapp.server.domain.enums.TransactionType;
+import org.ably.bankinge.domain.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +14,6 @@ public class TransactionDTO {
     private Long id;
     private Double amount;
     private TransactionType type;
-    private AccountDTO account;
+    private AccountDTO accountOfSender;
+    private AccountDTO accountOfReceiver;
 }

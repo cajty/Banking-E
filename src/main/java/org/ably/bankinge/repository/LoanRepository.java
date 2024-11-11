@@ -1,6 +1,6 @@
-package com.bankapp.server.repository;
+package org.ably.bankinge.repository;
 
-import com.bankapp.server.domain.entities.Loan;
+import org.ably.bankinge.domain.entities.Loan;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LoanRepository extends JpaRepository<Loan, Long> {

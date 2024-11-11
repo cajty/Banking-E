@@ -1,17 +1,18 @@
-package com.bankapp.server.domain.dto;
+package org.ably.bankinge.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDTO {
-    private Long id;
-    private String accountNumber;
+    private UUID accountNumber;
     private Double balance;
-    private UserDTO user;
 }

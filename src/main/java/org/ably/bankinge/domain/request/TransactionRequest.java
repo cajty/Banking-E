@@ -1,12 +1,13 @@
-package com.bankapp.server.domain.request;
+package org.ably.bankinge.domain.request;
 
-import com.bankapp.server.domain.enums.TransactionType;
+import org.ably.bankinge.domain.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -20,6 +21,9 @@ public class TransactionRequest {
     @NotNull(message = "Type cannot be null")
     private TransactionType type;
 
-    @NotNull(message = "Account ID cannot be null")
-    private Long accountId;
+    @NotNull(message = "Account number of that sender   cannot be null")
+    private UUID accountSenderId;
+
+    @NotNull(message = "Account number of that receiver  cannot be null")
+    private UUID accountReceiverId;
 }

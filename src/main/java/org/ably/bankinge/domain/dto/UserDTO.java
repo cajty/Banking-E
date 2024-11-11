@@ -1,6 +1,6 @@
-package com.bankapp.server.domain.dto;
+package org.ably.bankinge.domain.dto;
 
-import com.bankapp.server.domain.enums.Role;
+import org.ably.bankinge.domain.enums.Role;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -21,7 +22,7 @@ public class UserDTO {
     private Double monthlyIncome;
     private int creditScore;
     private Role role;
-    private List<Long> accountIds;
+    private List<UUID> accountIds;
     private List<Long> invoiceIds;
     private List<Long> loanIds;
 }

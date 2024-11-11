@@ -1,10 +1,10 @@
-package com.bankapp.server.service;
+package org.ably.bankinge.service;
 
-import com.bankapp.server.domain.dto.InvoiceDTO;
-import com.bankapp.server.domain.entities.Invoice;
-import com.bankapp.server.domain.request.InvoiceRequest;
-import com.bankapp.server.mapper.InvoiceMapper;
-import com.bankapp.server.repository.InvoiceRepository;
+import org.ably.bankinge.domain.dto.InvoiceDTO;
+import org.ably.bankinge.domain.entities.Invoice;
+import org.ably.bankinge.domain.request.InvoiceRequest;
+import org.ably.bankinge.mapper.InvoiceMapper;
+import org.ably.bankinge.repository.InvoiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
