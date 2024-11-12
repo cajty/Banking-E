@@ -2,6 +2,7 @@ package org.ably.bankinge.controller;
 
 import org.ably.bankinge.domain.dto.UserDTO;
 import org.ably.bankinge.domain.request.UserRequest;
+import org.ably.bankinge.mapper.UserMapper;
 import org.ably.bankinge.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.OK;
 
 import io.swagger.v3.oas.annotations.Operation;  // For documenting each method
-import io.swagger.v3.oas.annotations.tags.Tag;   // For documenting the controller
+
 
 @RestController
 @RequestMapping("/api/user")
@@ -24,18 +25,20 @@ import io.swagger.v3.oas.annotations.tags.Tag;   // For documenting the controll
 public class UserController {
 
     private final UserService userService;
+    private UserMapper userMapper;
 
     @Operation(summary = "Create new user")      // Added this line
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO save(@RequestBody @Valid final UserRequest userRequest) {
-        return userService.save(userRequest);
+        return userMapper.toDTO(userService.save(userRequest));
     }
 
     @Operation(summary = "Get all users")        // Added this line
     @GetMapping("/")
     public List<UserDTO> findAll() {
-        return userService.findAll();
+
+        return userMapper.toDTOList(userService.findAll());
     }
 
     @Operation(summary = "Delete user by ID")    // Added this line
@@ -48,6 +51,7 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public Optional<UserDTO> findById(@PathVariable final Long id) {
-        return userService.findById(id);
+
+        return userService.findById(id).map(userMapper::toDTO);
     }
 }

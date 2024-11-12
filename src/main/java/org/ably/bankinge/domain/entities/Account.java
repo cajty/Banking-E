@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.ably.bankinge.domain.enums.AccountStatus;
 
 import java.util.UUID;
 
@@ -24,4 +25,6 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    private AccountStatus status;
 }

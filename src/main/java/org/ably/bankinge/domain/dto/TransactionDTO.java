@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -14,6 +16,6 @@ public class TransactionDTO {
     private Long id;
     private Double amount;
     private TransactionType type;
-    private AccountDTO accountOfSender;
-    private AccountDTO accountOfReceiver;
+    private UUID accountOfSender;
+    private UUID accountOfReceiver;
 }

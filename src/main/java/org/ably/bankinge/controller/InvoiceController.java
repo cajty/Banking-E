@@ -2,6 +2,7 @@ package org.ably.bankinge.controller;
 
 import org.ably.bankinge.domain.dto.InvoiceDTO;
 import org.ably.bankinge.domain.request.InvoiceRequest;
+import org.ably.bankinge.mapper.InvoiceMapper;
 import org.ably.bankinge.service.InvoiceService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,18 +23,19 @@ import static org.springframework.http.HttpStatus.OK;
 public class InvoiceController {
 
     private final InvoiceService invoiceService;
+    private final InvoiceMapper invoiceMapper;
 
     @Operation(summary = "Create new invoice")
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public InvoiceDTO save(@RequestBody @Valid final InvoiceRequest invoiceRequest) {
-        return invoiceService.save(invoiceRequest);
+        return invoiceMapper.toDTO(invoiceService.save(invoiceRequest));
     }
 
     @Operation(summary = "Get all invoices")
     @GetMapping("/")
     public List<InvoiceDTO> findAll() {
-        return invoiceService.findAll();
+        return invoiceMapper.toDTOList(invoiceService.findAll());
     }
 
     @Operation(summary = "Delete invoice by ID")
@@ -46,6 +48,6 @@ public class InvoiceController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     public Optional<InvoiceDTO> findById(@PathVariable final Long id) {
-        return invoiceService.findById(id);
+        return invoiceService.findById(id).map(invoiceMapper::toDTO);
     }
 }

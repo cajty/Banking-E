@@ -1,6 +1,6 @@
 package org.ably.bankinge.service;
 
-import org.ably.bankinge.domain.dto.LoanDTO;
+
 import org.ably.bankinge.domain.entities.Loan;
 import org.ably.bankinge.domain.request.LoanRequest;
 import org.ably.bankinge.mapper.LoanMapper;
@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor
@@ -17,17 +17,19 @@ public class LoanService {
     private final LoanRepository loanRepository;
     private final LoanMapper loanMapper;
 
-    public LoanDTO save(LoanRequest loanRequest) {
+    public Loan save(LoanRequest loanRequest) {
         Loan loan = loanMapper.toEntity(loanRequest);
-        return loanMapper.toDTO(loanRepository.save(loan));
+        return loanRepository.save(loan);
     }
 
-    public List<LoanDTO> findAll() {
-        return loanMapper.toDTOList(loanRepository.findAll());
+    public List<Loan> findAll() {
+        return loanRepository.findAll();
     }
 
-    public Optional<LoanDTO> findById(Long id) {
-        return loanRepository.findById(id).map(loanMapper::toDTO);
+    public Loan findById(Long id) {
+        return loanRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Loan not found with id " + id)
+        );
     }
 
     public void delete(Long id) {

@@ -1,6 +1,6 @@
 package org.ably.bankinge.service;
 
-import org.ably.bankinge.domain.dto.InvoiceDTO;
+
 import org.ably.bankinge.domain.entities.Invoice;
 import org.ably.bankinge.domain.request.InvoiceRequest;
 import org.ably.bankinge.mapper.InvoiceMapper;
@@ -18,17 +18,17 @@ public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final InvoiceMapper invoiceMapper;
 
-    public InvoiceDTO save(InvoiceRequest invoiceRequest) {
+    public Invoice save(InvoiceRequest invoiceRequest) {
         Invoice invoice = invoiceMapper.toEntity(invoiceRequest);
-        return invoiceMapper.toDTO(invoiceRepository.save(invoice));
+        return invoiceRepository.save(invoice);
     }
 
-    public List<InvoiceDTO> findAll() {
-        return invoiceMapper.toDTOList(invoiceRepository.findAll());
+    public List<Invoice> findAll() {
+        return invoiceRepository.findAll();
     }
 
-    public Optional<InvoiceDTO> findById(Long id) {
-        return invoiceRepository.findById(id).map(invoiceMapper::toDTO);
+    public Optional<Invoice> findById(Long id) {
+        return invoiceRepository.findById(id);
     }
 
     public void delete(Long id) {

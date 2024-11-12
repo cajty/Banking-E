@@ -22,7 +22,6 @@ public interface TransactionMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "accountOfSender.id", source = "accountSenderId")
     @Mapping(target = "accountOfReceiver.id", source = "accountReceiverId")
-    @Mapping(target = "type", source = "type")
     Transaction toEntity(TransactionRequest transactionRequest);
 
     List<TransactionDTO> toDTOList(List<Transaction> transactions);

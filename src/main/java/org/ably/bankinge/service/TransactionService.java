@@ -1,52 +1,61 @@
 package org.ably.bankinge.service;
 
+
 import org.ably.bankinge.domain.dto.TransactionDTO;
 import org.ably.bankinge.domain.entities.Transaction;
+import org.ably.bankinge.domain.enums.TransactionType;
 import org.ably.bankinge.domain.request.TransactionRequest;
-import org.ably.bankinge.exception.TransactionNotFoundException;
+import org.ably.bankinge.exception.transaction.TransactionNotFoundException;
 import org.ably.bankinge.mapper.TransactionMapper;
-import org.ably.bankinge.repository.AccountRepository;
 import org.ably.bankinge.repository.TransactionRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
-    private final  AccountService accountService;
+    private final AccountService accountService;
     private final TransactionMapper transactionMapper;
 
-    public TransactionDTO save(TransactionRequest transactionRequest) {
-        try {
-            accountService.findById(transactionRequest.getAccountSenderId());
-            accountService.findById(transactionRequest.getAccountReceiverId());
+    @Transactional
+    public Transaction save(TransactionRequest request) {
 
-            Transaction transaction = transactionMapper.toEntity(transactionRequest);
-            return transactionMapper.toDTO(transactionRepository.save(transaction));
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        Transaction transaction = transactionMapper.toEntity(request);
+        if ( request.getAmount() >= 10000) {
+            transaction.setType(TransactionType.PENDING);
+        }else {
+            accountService.transferMoney(request.getAccountSenderId(), request.getAccountReceiverId(), request.getAmount());
+            transaction.setType(TransactionType.COMPLETED);
         }
-        return null;
+
+        return transactionRepository.save(transaction);
     }
 
-    public List<TransactionDTO> findAll(){
+    @Transactional(readOnly = true)
+    public List<TransactionDTO> findAll() {
         return transactionMapper.toDTOList(transactionRepository.findAll());
     }
+    @Transactional
+    public List<TransactionDTO> findByUserId(Long userId) {
+        return transactionMapper.toDTOList(transactionRepository.findByUserId(userId));
+    }
 
-    public void delete(Long id){
+    @Transactional
+    public void delete(Long id) {
+        findById(id);
         transactionRepository.deleteById(id);
     }
 
-    public Optional<TransactionDTO> findById(Long id){
-        return Optional.ofNullable(transactionRepository.findById(id)
-                .map(transactionMapper::toDTO)
-                .orElseThrow(TransactionNotFoundException::new));
+    @Transactional(readOnly = true)
+    public Transaction findById(Long id) {
+        return transactionRepository.findById(id)
+                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with id: " + id));
     }
+
 
 }

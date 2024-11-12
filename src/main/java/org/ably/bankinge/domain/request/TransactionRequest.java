@@ -18,8 +18,7 @@ public class TransactionRequest {
     @NotNull(message = "Amount cannot be null")
     private Double amount;
 
-    @NotNull(message = "Type cannot be null")
-    private TransactionType type;
+
 
     @NotNull(message = "Account number of that sender   cannot be null")
     private UUID accountSenderId;
