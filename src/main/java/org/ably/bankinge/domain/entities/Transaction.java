@@ -20,6 +20,7 @@ public class Transaction {
     private Double amount;
     private TransactionType type;
 
+
     @ManyToOne
     @JoinColumn(name = "sender_account_id")
     private Account accountOfSender;

@@ -7,7 +7,7 @@ import org.ably.bankinge.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
@@ -32,8 +32,9 @@ public class UserService  {
 
 
 
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id) ;
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(()
+        -> new RuntimeException("User not found with id " + id));
     }
 
 
@@ -47,4 +48,6 @@ public class UserService  {
 
 
     public void delete(Long id) {userRepository.deleteById(id);}
+
+
 }

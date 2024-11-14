@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -50,8 +50,8 @@ public class UserController {
     @Operation(summary = "Get user by ID")
     @GetMapping("/{id}")
     @ResponseStatus(OK)
-    public Optional<UserDTO> findById(@PathVariable final Long id) {
+    public UserDTO findById(@PathVariable final Long id) {
 
-        return userService.findById(id).map(userMapper::toDTO);
+        return userMapper.toDTO(userService.findById(id));
     }
 }
