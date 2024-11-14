@@ -15,10 +15,15 @@ public interface LoanMapper {
     LoanMapper INSTANCE = Mappers.getMapper(LoanMapper.class);
 
     @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "amount", source = "principal")
+    @Mapping(target = "monthlyPayment", source = "monthlyPayment")
+    @Mapping(target = "termMonths", source = "termMonths")
+    @Mapping(target = "approved", source = "approved")
     LoanDTO toDTO(Loan loan);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "user.id", source = "userId")
+    @Mapping(target = "principal", source = "amount")
+    @Mapping(target = "monthlyPayment", source = "mouthlyPayment")
     Loan toEntity(LoanRequest loanRequest);
 
     List<LoanDTO> toDTOList(List<Loan> loans);

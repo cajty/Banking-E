@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -30,6 +30,8 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    private LocalDate createdAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Account> accounts;

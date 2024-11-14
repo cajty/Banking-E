@@ -1,6 +1,7 @@
 package org.ably.bankinge.service;
 
 
+import org.ably.bankinge.domain.documents.TransactionDocument;
 import org.ably.bankinge.domain.dto.TransactionDTO;
 import org.ably.bankinge.domain.entities.Transaction;
 import org.ably.bankinge.domain.enums.TransactionType;
@@ -8,6 +9,8 @@ import org.ably.bankinge.domain.request.TransactionRequest;
 import org.ably.bankinge.exception.transaction.TransactionNotFoundException;
 import org.ably.bankinge.mapper.TransactionMapper;
 import org.ably.bankinge.repository.TransactionRepository;
+
+import org.ably.bankinge.repository.TransactionSearchRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +22,10 @@ import java.util.List;
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
+    private final TransactionSearchRepository transactionSearchRepository;
     private final AccountService accountService;
     private final TransactionMapper transactionMapper;
+
 
     @Transactional
     public Transaction save(TransactionRequest request) {
@@ -33,7 +38,15 @@ public class TransactionService {
             transaction.setType(TransactionType.COMPLETED);
         }
 
-        return transactionRepository.save(transaction);
+        Transaction savedTransaction = transactionRepository.save(transaction);
+
+
+        TransactionDocument document = TransactionDocument.fromEntity(savedTransaction);
+
+
+        transactionSearchRepository.save(document);
+
+        return savedTransaction;
     }
 
     @Transactional(readOnly = true)
@@ -55,6 +68,19 @@ public class TransactionService {
     public Transaction findById(Long id) {
         return transactionRepository.findById(id)
                 .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with id: " + id));
+    }
+
+    public List<TransactionDocument> searchTransactionsByAmountRange(Double minAmount, Double maxAmount) {
+        return transactionSearchRepository.findByAmountBetween(minAmount, maxAmount);
+    }
+
+    public List<TransactionDocument> searchTransactionsByType(TransactionType type) {
+        return transactionSearchRepository.findByType(type);
+    }
+
+    public List<TransactionDocument> searchTransactionsByUser(Long userId) {
+        String userIdStr = userId.toString();
+        return transactionSearchRepository.findBySenderUserIdOrReceiverUserId(userIdStr, userIdStr);
     }
 
 

@@ -12,9 +12,26 @@ spring:
     hibernate:
       ddl-auto: update
 
+  liquibase:
+    change-log: classpath:db/migration/changelog.yml
+    enabled: true
+    default-schema: public
+    drop-first: false
+
+
+  elasticsearch:
+    uris: ${ELASTICSEARCH_URI:localhost:9200}
+    connection-timeout: 5s
+    socket-timeout: 30s
+    username:
+    password:
+
+
   h2:
     console:
       enabled: true
+
+
 
   springdoc:
     api-docs:

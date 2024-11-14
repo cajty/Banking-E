@@ -1,14 +1,13 @@
 package org.ably.bankinge.domain.request;
 
-import org.ably.bankinge.domain.enums.Role;
+
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import java.util.List;
+
 
 @Data
 @Builder

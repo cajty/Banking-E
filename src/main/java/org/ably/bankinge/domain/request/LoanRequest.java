@@ -19,6 +19,10 @@ public class LoanRequest {
     @Positive(message = "Amount must be a positive value")
     private Double amount;
 
+    @NotNull(message = "Duration cannot be null")
+    @Positive(message = "Duration must be a positive value")
+    private Double mouthlyPayment;
+
 
     @NotNull(message = "User ID cannot be null")
     private Long userId;

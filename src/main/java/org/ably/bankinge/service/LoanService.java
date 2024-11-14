@@ -18,7 +18,11 @@ public class LoanService {
     private final LoanMapper loanMapper;
 
     public Loan save(LoanRequest loanRequest) {
+
+         
+
         Loan loan = loanMapper.toEntity(loanRequest);
+
         return loanRepository.save(loan);
     }
 

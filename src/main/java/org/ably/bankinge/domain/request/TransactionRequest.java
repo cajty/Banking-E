@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.UUID;
 
 @Data
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class TransactionRequest {
 
     @NotNull(message = "Amount cannot be null")
+    @Positive(message = "Amount must be more than 0")
     private Double amount;
 
 
