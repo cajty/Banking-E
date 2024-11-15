@@ -6,7 +6,7 @@ import org.ably.bankinge.domain.request.UserRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.mapstruct.factory.Mappers;
+
 
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
 
     @Mapping(target = "accountIds", source = "accounts", qualifiedByName = "mapAccountIds")
     @Mapping(target = "invoiceIds", source = "invoices", qualifiedByName = "mapInvoiceIds")

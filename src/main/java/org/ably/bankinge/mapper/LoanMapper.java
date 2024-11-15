@@ -5,14 +5,14 @@ import org.ably.bankinge.domain.entities.Loan;
 import org.ably.bankinge.domain.request.LoanRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 
 public interface LoanMapper {
-    LoanMapper INSTANCE = Mappers.getMapper(LoanMapper.class);
+
 
     @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "amount", source = "principal")

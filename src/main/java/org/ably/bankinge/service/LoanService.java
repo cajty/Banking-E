@@ -54,6 +54,25 @@ public class LoanService {
         );
     }
 
+    public List<Loan> findBYType(String type) {
+        return loanRepository.findBYType(type);
+    }
+
+    public Loan validateLoan(Long id, boolean approved , Long userID ) {
+        Loan loan = findById(id);
+        User user = userService.findById(userID);
+
+        if (approved) {
+            loan.setApproved(true);
+            loan.setApprovedByUser(user);
+        } else {
+            loan.setApproved(false);
+            loan.setApprovedByUser(user);
+        }
+        loanRepository.save(loan);
+        return loan;
+    }
+
     public void delete(Long id) {
         loanRepository.deleteById(id);
     }

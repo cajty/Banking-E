@@ -5,14 +5,14 @@ import org.ably.bankinge.domain.entities.Transaction;
 import org.ably.bankinge.domain.request.TransactionRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface TransactionMapper {
 
-    TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
+
 
     @Mapping(target = "accountOfSender", source = "accountOfSender.id")
     @Mapping(target = "accountOfReceiver", source = "accountOfSender.id")

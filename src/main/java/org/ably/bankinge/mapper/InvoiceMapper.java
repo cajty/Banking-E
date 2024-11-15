@@ -5,14 +5,14 @@ import org.ably.bankinge.domain.entities.Invoice;
 import org.ably.bankinge.domain.request.InvoiceRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface InvoiceMapper {
 
-    InvoiceMapper INSTANCE = Mappers.getMapper(InvoiceMapper.class);
+
 
     @Mapping(target = "userId", source = "user.id")
     InvoiceDTO toDTO(Invoice invoice);

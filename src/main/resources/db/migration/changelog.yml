@@ -9,5 +9,7 @@ databaseChangeLog:
       dbms: mysql
   - include:
       file: db/changelog/2024/11/13-02-changelog.yaml
+  - include:
+      file: db/changelog/2024/11/14-01-changelog.yaml
 
 

@@ -50,4 +50,16 @@ public class LoanController {
     public LoanDTO findById(@PathVariable final Long id) {
         return LoanMapper.toDTO(LoanService.findById(id));
     }
+
+    @Operation(summary = "Get loans by type")
+    @GetMapping("/type/{type}")
+    public List<LoanDTO> findBYType(@PathVariable final String type) {
+        return LoanMapper.toDTOList(LoanService.findBYType(type));
+    }
+
+//    @Operation(summary = "validate user  loan")
+//    @GetMapping("/validate/{id}")
+//    public List<String> validateUserLoan(@PathVariable final Long id) {
+//        return LoanService.validateLoan());
+//    }
 }

@@ -20,6 +20,7 @@ public class Invoice {
     private Long id;
     private Double amount;
     private Date dueDate;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

@@ -1,14 +1,13 @@
 package org.ably.bankinge.domain.dto;
 
 import org.ably.bankinge.domain.enums.Role;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
+
 import java.util.UUID;
 
 @Data
